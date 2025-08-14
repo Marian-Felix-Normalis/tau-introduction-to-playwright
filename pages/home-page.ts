@@ -1,23 +1,29 @@
-import { type Locator, type Page, expect } from '@playwright/test';
+import {expect, type Locator, type Page } from "@playwright/test";
 
-export class HomePage {
-    readonly page: Page;
+export class HomePage{
+    //variables
+    readonly page:Page
+    //  await page.getByRole('link', {name: 'Get started'}).click();
     readonly getStartedButton: Locator;
-    readonly pageTitle: RegExp;
+    //  await expect(page).toHaveTitle(/Playwright/);
+    readonly title: RegExp;
 
-    constructor(page: Page) {
+    //constructor
+    constructor (page:Page) {
         this.page = page;
         this.getStartedButton = page.getByRole('link', { name: 'Get started' });
-        this.pageTitle = /Playwright/;
+        this.title = /Playwright/;
     }
 
-    async clickGetStarted() {
+    //methods
+    async clickGetStarted(){
         await this.getStartedButton.click();
     }
 
-    async assertPageTitle() {
-        await expect(this.page).toHaveTitle(this.pageTitle);
+    async assertPageTitle(){
+        await expect(this.page).toHaveTitle(this.title)
     }
+
 }
 
 export default HomePage;
